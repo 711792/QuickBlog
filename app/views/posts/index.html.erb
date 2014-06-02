@@ -1,25 +1,27 @@
-<h1>Listing posts</h1>
+<%= image_tag("images.jpg", :title => "Welcome to the Quick Blog", :style => "width:1150px") %>
 
-<table>
+<body style="margin-left:50px;">
+<h1 style="color:Brown;">Listing posts</h1>
+
+
+<table style="width:1100px;">
   <tr>
-    <th>Title</th>
+    <th style="width:70px">Title</th>
     <th>Body</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
     <td><%= post.title %></td>
-    <td><%= post.body %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "#{post.body}", post %></td>
+    <td><%= link_to image_tag("delete-24.png", :border=>0, :title=>"Delete"), post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<button><%= link_to 'New Post', new_post_path %></button>
+
+</body>
