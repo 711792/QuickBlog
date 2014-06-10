@@ -1,10 +1,8 @@
 QuickBlog::Application.routes.draw do
-  
 
   resources :posts do
     resources :comments, :only => [:create]
   end
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

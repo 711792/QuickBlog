@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
-  before_filter :authenticate, :except => [ :index, :show ]
-  # GET /posts
+    # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
+      format.csv { send_data @posts.to_csv }
+      format.xls { send_data @posts.to_csv(col_sep: "\t") }
     end
   end
 
@@ -82,9 +82,3 @@ class PostsController < ApplicationController
     end
   end
 end
-  private
-  def authenticate
-    authenticate_or_request_with_http_basic do |name, password|
-      name == "admin" && password == "secret"
-    end
-  end 
